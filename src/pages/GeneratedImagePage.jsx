@@ -6,9 +6,10 @@ import frame from "./../assets/generated-image-frame.png";
 import { useReactToPrint } from "react-to-print";
 import EmailFeature from "../components/modal/EmailFeature";
 import { Link } from "react-router-dom";
-
 import { IoIosCloseCircle } from "react-icons/io";
-// import QRCode from "qrcode.react";
+import ReactDOM from "react-dom";
+import QRCode from "react-qr-code";
+import axios from "axios";
 
 export default function GeneratedImagePage({ generatedImage, selectedGender }) {
   const exportRef = useRef();
@@ -17,10 +18,12 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
   generatedImage && console.log(generatedImage);
   const [printImage, setPrintImage] = useState();
   const [showQrPopup, setShowQrPopup] = useState(false);
+  const [qr, setQr] = useState("");
 
-  // const [qr, setQr] = useState(url);
-  // qr
-  /*   const handleSubmitQr = () => {
+  // handle QR code generation
+
+  const handleSubmitQr = () => {
+    console.log("submitting qr");
     setShowQrPopup(true);
     axios
       .post("https://adp24companyday.com/aiphotobooth/upload.php", {
@@ -28,13 +31,13 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
       })
       .then(function (response) {
         console.log(response);
-        // setUrl(response.data.url);
         setQr(response.data.url);
+        console.log(qr);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }; */
+  };
 
   // handlePrint
   // window.print();
@@ -105,19 +108,23 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
               <button>Regenerate</button>
             </Link>
 
-            {/* qr */}
-            {/*   <button onClick={handleSubmitQr}>QR</button>
+            {/* qr feature*/}
+            <button onClick={handleSubmitQr}>QR</button>
             {showQrPopup && (
               <div className="popup-qr">
                 <div className="qr">
+                  <div
+                    className="closePopup"
+                    onClick={() => setShowQrPopup(false)}
+                  >
+                    <IoIosCloseCircle />
+                  </div>
                   <h1>Scan this QR to get image</h1>
-                  <QRCode value={qr} size={200} />
-                </div>
-                <div className="closePopup">
-                  <IoIosCloseCircle />
+                  <QRCode size={256} value={qr} />
                 </div>
               </div>
-            )} */}
+            )}
+
             <button
               onClick={() =>
                 exportAsImage(
@@ -156,7 +163,7 @@ const GeneratedImageWrapper = styled.div`
     position: absolute;
   }
   .popup-qr {
-    border: 1px solid black;
+    /* border: 10px solid black; */
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -166,13 +173,39 @@ const GeneratedImageWrapper = styled.div`
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 100;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .qr {
+      background-color: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5vw;
+      color: #000;
+      height: 75vw;
+      padding: 5vw;
+      padding-top: 0;
+      border-radius: 2vw;
+      h1 {
+        font-size: 5vw;
+        font-weight: bold;
+      }
+    }
   }
+
   .closePopup {
-    position: absolute;
-    top: 10%;
-    right: 10%;
+    /* position: absolute; */
+    /* top: 5%; */
+    /* right: 5%; */
     color: red;
-    width: 10vw;
+    margin-left: auto;
+    /* border: 1px solid black; */
+    svg {
+      font-size: 8vw;
+    }
   }
   header {
     /* border: 1px solid black; */
