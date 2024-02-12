@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Chronicle";
+  src: url("./../public/Chronicle\ Display\ Roman.otf") format("OpenType");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Chronicle", "Montserrat", sans-serif;
+  word-spacing: 2vw;
+}
+
+body {
+  background-image: url("./assets/mobile-bg.png");
+  /* background: url("./../src/assets/pc-background-image.png"); */
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat;
+  height: 100vh;
+  /* border: 10px solid black; */
+  /* border: 3px solid darkmagenta; */
+}
+
+/* @media screen and (max-width: 576px) {
+  body {
+    background-image: url("./assets/mobile-bg.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+} */
