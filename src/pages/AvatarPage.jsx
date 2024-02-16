@@ -11,6 +11,7 @@ export default function AvatarPage({
   setGeneratedImage,
   selectedGender,
   generatedImage,
+  setUrl,
 }) {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState();
@@ -40,8 +41,23 @@ export default function AvatarPage({
         .then(function (response) {
           console.log(response);
           // getScaleImage()
-
           setGeneratedImage(`data:image/webp;base64,${response.data.result}`);
+
+          // upload image on server
+          axios
+            .post("https://adp24companyday.com/aiphotobooth/upload.php", {
+              // img: generatedImage.split(",")[1],
+              img: response.data.result,
+            })
+            .then(function (response) {
+              console.log(response);
+              // setUrl(response.data.url);
+              setUrl(response.data.url);
+              console.log("image uploaded");
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         })
         .catch(function (error) {
           console.log(error);

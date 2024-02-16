@@ -11,6 +11,7 @@ export default function App() {
   const [capturedImage, setCapturedImg] = useState();
   const [generatedImage, setGeneratedImage] = useState();
   const [selectedGender, setSelectedGender] = useState();
+  const [url, setUrl] = useState("");
   return (
     <BrowserRouter>
       <Routes>
@@ -37,6 +38,7 @@ export default function App() {
               setGeneratedImage={setGeneratedImage}
               selectedGender={selectedGender}
               generatedImage={generatedImage}
+              setUrl={setUrl}
             />
           }
         />
@@ -46,6 +48,7 @@ export default function App() {
             <GeneratedImagePage
               generatedImage={generatedImage}
               selectedGender={selectedGender}
+              url={url}
             />
           }
         />

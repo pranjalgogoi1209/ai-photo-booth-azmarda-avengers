@@ -11,7 +11,11 @@ import ReactDOM from "react-dom";
 import QRCode from "react-qr-code";
 import axios from "axios";
 
-export default function GeneratedImagePage({ generatedImage, selectedGender }) {
+export default function GeneratedImagePage({
+  generatedImage,
+  selectedGender,
+  url,
+}) {
   const exportRef = useRef();
   const printRef = useRef();
   const [isEmailOpen, setIsEmailOpen] = useState(false);
@@ -25,7 +29,8 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
   const handleSubmitQr = () => {
     console.log("submitting qr");
     setShowQrPopup(true);
-    axios
+    setQr(url);
+    /*   axios
       .post("https://adp24companyday.com/aiphotobooth/upload.php", {
         img: generatedImage.split(",")[1],
       })
@@ -36,7 +41,7 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
       })
       .catch(function (error) {
         console.log(error);
-      });
+      }); */
   };
 
   // handlePrint
