@@ -15,7 +15,7 @@ const downloadImage = (blob, fileName) => {
 };
 
 const exportAsImage = async (el, imageFileName) => {
-  const canvas = await html2canvas(el, { scale: 4 });
+  const canvas = await html2canvas(el, { scale: 2 });
   const image = canvas.toDataURL("image/png", 1.0);
   downloadImage(image, imageFileName);
 };

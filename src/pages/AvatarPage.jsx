@@ -33,7 +33,7 @@ export default function AvatarPage({
     setGeneratedImage("");
     if (selectedImage) {
       axios
-        .post("https://76ec-103-17-110-127.ngrok-free.app/rec", {
+        .post("https://49bb-103-17-110-127.ngrok-free.app/rec", {
           image: capturedImage.split(",")[1],
           choice: selectedImage.split(",")[1],
         })

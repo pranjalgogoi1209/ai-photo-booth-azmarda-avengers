@@ -55,7 +55,7 @@ export default function AvatarMobile({
   }; */
 
   const filterActualImg = index => {
-    const filteredActualImgArr = avengers.filter(
+    const filteredActualImgArr = avengerCardsActual.filter(
       (actualImg, ActualIndex) => ActualIndex === index
     );
     return filteredActualImgArr[0];
