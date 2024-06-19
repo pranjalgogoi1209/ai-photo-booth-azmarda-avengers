@@ -35,7 +35,7 @@ export default function AvatarPage({
     if (selectedImage) {
       axios
        .post("https://h.ngrok.dev/rec", {
-          image: capturedImg.split(",")[1],
+   image: capturedImage.split(",")[1],
           choice: selectedImage.split(",")[1],
           status: "PREMIUM",
         })
