@@ -46,7 +46,7 @@ export default function AvatarPage({
 
           // upload image on server
           axios
-            .post("https://adp24companyday.com/aiphotobooth/upload.php", {
+            .post("https://adp24companyday.com/aiphotobooth/aiphotobooth_avengers/upload.php", {
               // img: generatedImage.split(",")[1],
               img: response.data.result,
             })
